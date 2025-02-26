@@ -7,16 +7,12 @@ public class ListaSimplementeEnlazada<T> implements Lista<T> {
     public boolean add(T dato){
         boolean result = false;
         Elemento<T> elemento = new Elemento<T>(dato);
-        if (cabeza==null){
-            this.cabeza = elemento;
-            result=true;
-            this.numElementos+=1;
-        }else{
+        if (cabeza != null) {
             elemento.setSiguente(this.cabeza);
-            this.cabeza=elemento;
-            result=true;
-            this.numElementos+=1;
         }
+        this.cabeza = elemento;
+        result=true;
+        this.numElementos+=1;
 
         return result;
     }
