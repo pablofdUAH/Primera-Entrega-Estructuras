@@ -2,7 +2,7 @@ import java.lang.classfile.ClassFile;
 
 public class ListaSimplementeEnlazada<T> implements Lista<T> {
     Elemento<T> cabeza;
-    int numElementos;
+    int numElementos = 0;
     @Override
     public boolean add(T dato){
         boolean result = false;

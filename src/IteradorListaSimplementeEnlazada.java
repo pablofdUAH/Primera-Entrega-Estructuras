@@ -12,9 +12,15 @@ public class IteradorListaSimplementeEnlazada<T>implements Iterador<T> {
     }
     @Override
     public T next(){
-        T temporal = this.actual.getDato();
-        this.actual = this.actual.siguente;
-        return temporal;
+        if (hasNext()){
+            T temporal = this.actual.getDato();
+            if(actual.getSiguente()!=null){
+                this.actual = this.actual.getSiguente();
+            }
+            actual = null;
+            return temporal;
+        }
+        return null;
     }
     @Override
     public void delete(){
