@@ -16,6 +16,24 @@ public class ListaSimplementeEnlazada<T> implements Lista<T> {
 
         return result;
     }
+    public boolean addAtEnd(T dato){
+        boolean result = false;
+        Elemento<T> elemento = new Elemento<T>(dato);
+        Elemento<T> actual=cabeza;
+        if (actual==null){
+            cabeza = elemento;
+            numElementos+=1;
+            result=true;
+        }else{
+            while(actual.getSiguente() !=null){
+                actual = actual.getSiguente();
+            }
+            actual.setSiguente(elemento);
+            numElementos +=1;
+            result=true;
+        }
+        return result;
+    }
     @Override
     public boolean delete(T dato){
         boolean result =false;
