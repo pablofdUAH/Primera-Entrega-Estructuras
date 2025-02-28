@@ -1,8 +1,15 @@
 import java.lang.classfile.ClassFile;
 
 public class ListaSimplementeEnlazada<T> implements Lista<T> {
+    // ZONA DE ATRIBUTOS
     Elemento<T> cabeza;
     int numElementos = 0;
+
+
+    // ZONA DE METODOS
+        // Constructor
+
+        // Metodos de la interfaz
     @Override
     public boolean add(T dato){
         boolean result = false;
@@ -65,4 +72,6 @@ public class ListaSimplementeEnlazada<T> implements Lista<T> {
     public int getNumElementos(){
         return this.numElementos;
     }
+
+        // Metodos propios
 }

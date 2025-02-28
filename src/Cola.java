@@ -1,5 +1,14 @@
 public class Cola<T> {
+    // ZONA DE ATRIBUTOS
+
+
+    // ZONA DE METODOS
+        // Constructor
     private ListaSimplementeEnlazada<T> cola = new ListaSimplementeEnlazada<T>();
+
+        // Las colas no tienen metodos de interfaz porque no necesitan una
+
+        // Metodos propios
     void enqueue(T dato){
         cola.add(dato);
     }
@@ -12,4 +21,5 @@ public class Cola<T> {
         cola.delete(dato);
         return dato;
     }
+
 }
