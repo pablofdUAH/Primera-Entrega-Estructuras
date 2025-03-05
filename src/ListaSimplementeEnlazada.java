@@ -1,4 +1,3 @@
-import java.lang.classfile.ClassFile;
 
 public class ListaSimplementeEnlazada<T> implements Lista<T> {
     Elemento<T> cabeza;

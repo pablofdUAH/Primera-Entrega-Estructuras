@@ -11,6 +11,7 @@ public class ListaDoblementeEnlazada<T> implements Lista<T> {
             cabeza = elemento;
             cola = elemento;
             numElementos = numElementos+1;
+            result=true;
         }else{
             elemento.setSiguente(cabeza);
             cabeza.setAnterior(elemento);
