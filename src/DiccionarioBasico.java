@@ -95,7 +95,7 @@ public class DiccionarioBasico<K,V> implements Diccionario<K,V> {
 
     @Override
     public Iterador<ElementoDiccionario<K, V>> getIterador() {
-        return null;
+        return new IteradorDiccionario<K,V>();
     }
 
     @Override
