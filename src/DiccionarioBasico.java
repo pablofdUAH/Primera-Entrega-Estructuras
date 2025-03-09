@@ -24,7 +24,7 @@ public class DiccionarioBasico<K,V> implements Diccionario<K,V> {
     @Override
     public boolean add(K clave, V valor) {
         boolean result = false;
-        ElementoDiccionario<K,V> elemento= new ElementoDiccionario<K,V>(clave,valor);
+        ElementoDiccionario<K,V> elemento= new ElementoDiccionario<>(clave,valor);
         if (cabeza==null){
             cabeza = elemento;
             cola = elemento;
@@ -45,30 +45,29 @@ public class DiccionarioBasico<K,V> implements Diccionario<K,V> {
         boolean result = false;
         if (numElementos!=0){
             ElementoDiccionario<K,V> elementoIterador=this.cabeza;
-            while(elementoIterador!=null && elementoIterador.getClave()!=clave){
+            while(elementoIterador!=null && !elementoIterador.getClave().equals(clave)){
                 elementoIterador = elementoIterador.getSiguente();
             }
             if (elementoIterador!=null){
-                if (numElementos==1){
-                    cabeza=null;
-                    cola=null;
-                    numElementos -=1;
-                    result = true;
-                }else if (cabeza==elementoIterador||cola==elementoIterador){
-                    if (cabeza==elementoIterador){
-                        elementoIterador.getSiguente().setAnterior(null);
-                        cabeza=elementoIterador.getSiguente();
+                if (numElementos == 1) { // Caso 1: Único elemento en la lista
+                    cabeza = null;
+                    cola = null;
+                } else if (cabeza == elementoIterador) { // Caso 2: Eliminar la cabeza
+                    cabeza = elementoIterador.getSiguente();
+                    if (cabeza != null) {
+                        cabeza.setAnterior(null);
                     }
-                    if (cola==elementoIterador){
-                        elementoIterador.getAnterior().setSiguente(null);
-                        cola=elementoIterador.getAnterior();
+                } else if (cola == elementoIterador) { // Caso 3: Eliminar la cola
+                    cola = elementoIterador.getAnterior();
+                    if (cola != null) {
+                        cola.setSiguente(null);
                     }
-                }else{
+                } else { // Caso 4: Elemento en medio
                     elementoIterador.getAnterior().setSiguente(elementoIterador.getSiguente());
                     elementoIterador.getSiguente().setAnterior(elementoIterador.getAnterior());
-                    result=true;
-                    numElementos -=1;
                 }
+                numElementos -=1;
+                result = true;
             }
         }
         return result;
@@ -101,11 +100,7 @@ public class DiccionarioBasico<K,V> implements Diccionario<K,V> {
 
     @Override
     public boolean exist(K clave) {
-        boolean result = false;
-        if (this.get(clave)!=null){
-            result=true;
-        }
-        return result;
+        return this.get(clave) != null;
     }
 
 }
