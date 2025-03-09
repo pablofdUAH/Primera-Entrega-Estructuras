@@ -1,11 +1,18 @@
 public class IteradorDoblementeEnlazada<T> implements Iterador<T>{
+    // ZONA DE ATRIBUTOS
     ElementoDoble<T>actual;
     ListaDoblementeEnlazada<T>miLista;
+
+
+    // ZONA DE METODOS
+        // Constructor
     private IteradorDoblementeEnlazada(){}
     public IteradorDoblementeEnlazada(ListaDoblementeEnlazada<T>lista){
         this.miLista=lista;
         this.actual=lista.cabeza;
     }
+
+        // Métodos de la interfaz
     @Override
     public boolean hasNext(){
         return this.actual!=null;
@@ -28,9 +35,12 @@ public class IteradorDoblementeEnlazada<T> implements Iterador<T>{
             this.miLista.delete(actual.getDato());
         }
     }
+
+        // Métodos propios
     public boolean hasPrevious(){
         return this.actual!=null;
     }
+
     public T previous(){
         if (hasPrevious()){
             T temporal = this.actual.getDato();

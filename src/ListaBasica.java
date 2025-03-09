@@ -1,19 +1,21 @@
 import java.sql.Array;
 
 public class ListaBasica<T> implements Lista<T>{
-    //Atributos
+    // ZONA DE ATRIBUTOS
     int maxElementos;
     int numElementos=0;
     T[] elementos;
-//Constructor
+
+
+    // ZONA DE METODOS
+        // Constructor (evitar el constructor por defecto)
     public ListaBasica(int Tamano_Maximo){
         this.maxElementos = Tamano_Maximo;
         this.elementos = (T[]) new Object[Tamano_Maximo];
     }
-    //Impedir uso constructor por defecto
     private ListaBasica(){}
 
-    //Métodos de la interfaz
+        //Métodos de la interfaz
     @Override
     public boolean add(T elemento) {
         boolean result=false;
@@ -24,8 +26,6 @@ public class ListaBasica<T> implements Lista<T>{
         }
         return result;
     }
-
-
     @Override
     public boolean delete(T elemento) {
         boolean result=false;
@@ -44,16 +44,14 @@ public class ListaBasica<T> implements Lista<T>{
         }
         return result;
     }
-
     @Override
     public int getNumElementos() {
         return this.numElementos;
     }
-
     @Override
     public Iterador<T> getIterador() {
         return new IteradorListaBasica(this);
     }
 
-    //Métodos Propios
+        //Métodos propios
 }

@@ -1,14 +1,15 @@
 public class IteradorListaBasica<T> implements Iterador<T>{
-    //Atributos
+    // ZONA DE ATRIBUTOS
     ListaBasica<T> milista;
-     int posElemento=0;
-     //Constructor
+    int posElemento=0;
+
+    // ZONA DE METODOS
+        //Constructor
     public IteradorListaBasica(ListaBasica<T> lista){
         this.milista = lista;
     }
 
-    //Métodos Interfaz:
-
+        //Métodos de la interfaz:
     @Override
     public boolean hasNext() {
         boolean result = false;
@@ -33,4 +34,6 @@ public class IteradorListaBasica<T> implements Iterador<T>{
         this.milista.delete(milista.elementos[posElemento]);
 
     }
+
+        // Métodos propios
 }

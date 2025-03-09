@@ -1,13 +1,20 @@
 public class ElementoDoble<T> {
+    // ZONA DE ATRIBUTOS
     T dato;
-
-    private ElementoDoble(){}
-    public ElementoDoble(T dato){
-        this.dato = dato;
-    }
     ElementoDoble<T> anterior;
     ElementoDoble<T> siguente;
 
+    // ZONA DE METODOS
+        // Constructor
+    private ElementoDoble(){}
+
+    public ElementoDoble(T dato){
+        this.dato = dato;
+    }
+
+        // Métodos de la interfaz
+
+        // Métodos propios
     public void setAnterior(ElementoDoble<T> anterior) {
         this.anterior = anterior;
     }

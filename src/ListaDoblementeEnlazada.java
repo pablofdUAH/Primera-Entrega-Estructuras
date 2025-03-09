@@ -1,9 +1,16 @@
 public class ListaDoblementeEnlazada<T> implements Lista<T> {
+    // ZONA DE ATRIBUTOS
     ElementoDoble<T> cabeza;
     ElementoDoble<T> cola;
     protected int numElementos = 0;
 
-    //Metodos Implementados
+
+    // ZONA DE METODOS
+        // Constructor
+
+        // Metodos de la interfaz
+
+        // Metodos propios
     public boolean add(T dato){
         boolean result = false;
         ElementoDoble<T> elemento= new ElementoDoble<T>(dato);
