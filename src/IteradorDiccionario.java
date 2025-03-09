@@ -1,21 +1,20 @@
-import java.security.Key;
 
-public class IteradorDiccionario<T> implements Iterador<T>{
-    ElementoDiccionario<K,V>actual;
-    DiccionarioBasico<K,V>miLista;
-    private IteradorDiccionario(){}
-    public IteradorDiccionario(ListaDoblementeEnlazada<T>diccionario){
-        this.miLista=lista;
-        this.actual=lista.cabeza;
+public class IteradorDiccionario<K,V> implements Iterador<ElementoDiccionario<K,V>>{
+    private ElementoDiccionario<K,V> actual;
+    DiccionarioBasico<K,V> miLista;
+
+    public IteradorDiccionario(DiccionarioBasico<K,V> diccionario){
+        this.miLista=diccionario;
+        this.actual=diccionario.getCabeza();
     }
     @Override
     public boolean hasNext(){
         return this.actual!=null;
     }
     @Override
-    public T next(){
+    public ElementoDiccionario<K,V> next(){
         if (hasNext()){
-            T temporal = this.actual.getDato();
+            ElementoDiccionario<K,V> temporal = actual;
             if(actual.getSiguente()!=null){
                 this.actual = this.actual.getSiguente();
             }
@@ -27,15 +26,15 @@ public class IteradorDiccionario<T> implements Iterador<T>{
     @Override
     public void delete(){
         if (actual!=null){
-            this.miLista.delete(actual.getDato());
+            this.miLista.delete(actual.getClave());
         }
     }
     public boolean hasPrevious(){
         return this.actual!=null;
     }
-    public T previous(){
+    public ElementoDiccionario<K,V> previous(){
         if (hasPrevious()){
-            T temporal = this.actual.getDato();
+            ElementoDiccionario<K,V> temporal = this.actual;
             if(actual.getAnterior()!=null){
                 this.actual = this.actual.getAnterior();
             }
