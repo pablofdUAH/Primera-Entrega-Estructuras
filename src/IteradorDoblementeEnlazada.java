@@ -1,55 +1,50 @@
-public class IteradorDoblementeEnlazada<T> implements Iterador<T>{
+public class IteradorDoblementeEnlazada<T> implements Iterador<T> {
     // ZONA DE ATRIBUTOS
-    ElementoDoble<T>actual;
-    ListaDoblementeEnlazada<T>miLista;
+    private ElementoDoble<T> actual;
+    private ListaDoblementeEnlazada<T> miLista;
 
-
-    // ZONA DE METODOS
-        // Constructor
-    private IteradorDoblementeEnlazada(){}
-    public IteradorDoblementeEnlazada(ListaDoblementeEnlazada<T>lista){
-        this.miLista=lista;
-        this.actual=lista.cabeza;
+    // Constructor
+    public IteradorDoblementeEnlazada(ListaDoblementeEnlazada<T> lista) {
+        this.miLista = lista;
+        this.actual = lista.cabeza; // Comenzar en la cabeza de la lista
     }
 
-        // Métodos de la interfaz
+    // Métodos de la interfaz
     @Override
-    public boolean hasNext(){
-        return this.actual!=null;
+    public boolean hasNext() {
+        return actual != null;
     }
+
     @Override
-    public T next(){
-        if (hasNext()){
-            T temporal = this.actual.getDato();
-            if(actual.getSiguente()!=null){
-                this.actual = this.actual.getSiguente();
-            }
-            actual = null;
-            return temporal;
+    public T next() {
+        if (!hasNext()) {
+            return null;
         }
-        return null;
+        T temporal = actual.getDato();
+        actual = actual.getSiguente(); // Avanzar sin anular actual = null
+        return temporal;
     }
+
     @Override
-    public void delete(){
-        if (actual!=null){
-            this.miLista.delete(actual.getDato());
+    public void delete() {
+        if (actual != null) {
+            ElementoDoble<T> aEliminar = actual;
+            actual = actual.getSiguente(); // Mover actual antes de eliminar
+            miLista.delete(aEliminar.getDato());
         }
     }
 
-        // Métodos propios
-    public boolean hasPrevious(){
-        return this.actual!=null;
+    // Métodos propios
+    public boolean hasPrevious() {
+        return actual != null && actual.getAnterior() != null;
     }
 
-    public T previous(){
-        if (hasPrevious()){
-            T temporal = this.actual.getDato();
-            if(actual.getAnterior()!=null){
-                this.actual = this.actual.getAnterior();
-            }
-            actual = null;
-            return temporal;
+    public T previous() {
+        if (!hasPrevious()) {
+            return null;
         }
-        return null;
+        actual = actual.getAnterior(); // Retroceder sin anular actual = null
+        return actual.getDato();
     }
 }
+

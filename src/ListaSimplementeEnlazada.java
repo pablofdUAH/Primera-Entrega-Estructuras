@@ -41,28 +41,28 @@ public class ListaSimplementeEnlazada<T> implements Lista<T> {
         return result;
     }
     @Override
-    public boolean delete(T dato){
-        boolean result =false;
-        if (cabeza!=null){
-            Elemento<T> elementoAnterior = cabeza;
-            if (elementoAnterior.getDato() == dato){
-                cabeza = elementoAnterior.siguente;
+    public boolean delete(T dato) {
+        boolean result = false;
+        if (cabeza != null) {
+            if (cabeza.getDato().equals(dato)) { // Comparar con equals
+                cabeza = cabeza.siguente;
                 result = true;
-                numElementos -=1;
-            }else {
-                while (elementoAnterior!=null&& elementoAnterior.siguente.getDato() != dato ) {
+                numElementos -= 1;
+            } else {
+                Elemento<T> elementoAnterior = cabeza;
+                while (elementoAnterior.siguente != null && !elementoAnterior.siguente.getDato().equals(dato)) { // Comparar con equals
                     elementoAnterior = elementoAnterior.siguente;
                 }
-                if (elementoAnterior!=null){
+                if (elementoAnterior.siguente != null) {
                     elementoAnterior.siguente = elementoAnterior.siguente.siguente;
-                    result=true;
-                    numElementos-=1;
+                    result = true;
+                    numElementos -= 1;
                 }
             }
         }
-
         return result;
     }
+
     @Override
     public Iterador<T> getIterador(){
         return new IteradorListaSimplementeEnlazada<T>(this);

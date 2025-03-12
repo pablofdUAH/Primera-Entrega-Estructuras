@@ -5,6 +5,9 @@ public class DiccionarioOrdenado<K extends Comparable<K>,V> extends DiccionarioB
     public DiccionarioOrdenado(boolean ordenAscendente){
         this.ordenador = new OrdenadorDiccionario<>(ordenAscendente);
     }
+    public OrdenadorDiccionario<K, V> getOrdenador() {
+        return ordenador;
+    }
     @Override
     public boolean add(K clave, V valor) {
         ElementoDiccionario<K, V> nuevoElemento = new ElementoDiccionario<>(clave, valor);
